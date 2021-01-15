@@ -44,17 +44,20 @@ with open("data/train.json", "w") as f:
 model = QuestionAnsweringModel(
     "distilbert",
     "distilbert-base-uncased-distilled-squad",
-    args={"reprocess_input_data": True, "overwrite_output_dir": True},
+    args={"reprocess_input_data": True,
+          "overwrite_output_dir": True,
+          "use_multiprocessing": False},
+    use_cuda=False
 )
 
 # Train the model
-model.train_model("data/train.json")
+# model.train_model("data/train.json")
 
 # Evaluate the model. (Being lazy and evaluating on the train data itself)
-result, text = model.eval_model("data/train.json")
+# result, text = model.eval_model("data/train.json")
 
-print(result)
-print(text)
+# print(result)
+# print(text)
 
 print("-------------------")
 
